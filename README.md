@@ -144,8 +144,7 @@ python experiments/SegFormer_SFG/train_segformer_sfg_public.py \
   --data-root ./data/mask_aug \
   --output-dir ./outputs/segformer_sfg \
   --epochs 80 \
-  --batch-size 4 \
-  --lr 6e-5
+  --batch-size 4 
 ```
 
 8. License
