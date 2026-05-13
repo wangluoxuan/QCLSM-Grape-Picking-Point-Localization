@@ -85,7 +85,7 @@ tqdm
 
 For the SegFormer-SFG segmentation stage, the dataset should be organized as follows:
 
-
+```text
 data/
 ├── mask_aug/
 │   ├── train/
@@ -99,7 +99,7 @@ data/
 │   └── test/
 │       ├── images/
 │       └── masks/
-
+```
 
 Each image should have a corresponding mask file with the same file name. For example:
 
@@ -139,13 +139,14 @@ The output of this stage includes:
 SegFormer-SFG is the core segmentation module released in this repository. It is used to segment grape stems and fruits within candidate grape cluster regions.
 
 Example training command:
+```bash
 python experiments/SegFormer_SFG/train_segformer_sfg_public.py \
   --data-root ./data/mask_aug \
   --output-dir ./outputs/segformer_sfg \
   --epochs 80 \
   --batch-size 4 \
   --lr 6e-5
-
+```
 
 8. License
 
