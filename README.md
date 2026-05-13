@@ -25,6 +25,7 @@ The repository provides source code, example data format, running instructions, 
 
 The repository is organized as follows:
 
+```text
 QCLSM-Grape-Picking-Point-Localization/
 ├── README.md
 ├── requirements.txt
@@ -48,6 +49,7 @@ QCLSM-Grape-Picking-Point-Localization/
     ├── images/
     ├── masks/
     └── outputs/
+```
 
 
 The main folders are described below:
