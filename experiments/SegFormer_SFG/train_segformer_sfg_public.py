@@ -331,54 +331,6 @@ def build_model(backbone: str = "nvidia/segformer-b2-finetuned-ade-512-512") -> 
     )
     return apply_fsa_fsgm(model, use_dwconv=True)
 
-
-# ---------------------------
-# Loss
-# ---------------------------
-def dice_loss_from_logits(logits: torch.Tensor, labels: torch.Tensor, class_ids: List[int], smooth: float = 1.0) -> torch.Tensor:
-    probs = torch.softmax(logits, dim=1)
-    losses = []
-    for cls_id in class_ids:
-        pred = probs[:, cls_id, :, :].reshape(logits.size(0), -1)
-        target = (labels == cls_id).float().reshape(logits.size(0), -1)
-        inter = (pred * target).sum(dim=1)
-        denom = pred.sum(dim=1) + target.sum(dim=1)
-        dice = (2.0 * inter + smooth) / (denom + smooth)
-        losses.append(1.0 - dice.mean())
-    return sum(losses) / len(losses)
-
-
-def boundary_loss_from_logits(logits: torch.Tensor, labels: torch.Tensor, class_ids: List[int]) -> torch.Tensor:
-    probs = torch.softmax(logits, dim=1)
-    kernel = torch.tensor(
-        [[0, 1, 0], [1, -4, 1], [0, 1, 0]],
-        dtype=probs.dtype,
-        device=probs.device,
-    ).view(1, 1, 3, 3)
-
-    losses = []
-    for cls_id in class_ids:
-        pred = probs[:, cls_id:cls_id + 1, :, :]
-        target = (labels == cls_id).float().unsqueeze(1)
-        pred_edge = torch.abs(F.conv2d(pred, kernel, padding=1)).clamp(0, 1)
-        gt_edge = torch.abs(F.conv2d(target, kernel, padding=1)).clamp(0, 1)
-        losses.append(F.l1_loss(pred_edge, gt_edge))
-    return sum(losses) / len(losses)
-
-
-def compute_seg_loss(
-    logits: torch.Tensor,
-    labels: torch.Tensor,
-    ce_weight: float = 1.0,
-    dice_weight: float = 0.5,
-    boundary_weight: float = 0.15,
-) -> torch.Tensor:
-    ce = F.cross_entropy(logits, labels)
-    dice = dice_loss_from_logits(logits, labels, EVAL_CLASS_IDS)
-    boundary = boundary_loss_from_logits(logits, labels, EVAL_CLASS_IDS)
-    return ce_weight * ce + dice_weight * dice + boundary_weight * boundary
-
-
 # ---------------------------
 # Metrics
 # ---------------------------
