@@ -131,10 +131,14 @@ The GBPD dataset can be accessed through [GBPD Dataset](https://doi.org/10.1016/
 The Grounding DINO stage is used to generate candidate grape cluster regions. This repository provides a wrapper-style script. Users should install the official Grounding DINO implementation and download the corresponding pretrained weights separately.
 
 Example command:
+```bash
 python experiments/DINO/run_roi_generation.py
+```
 
 The default text prompt is:
+```text
 grape cluster
+```
 
 The output of this stage includes:
 1. candidate bounding boxes in JSON format
