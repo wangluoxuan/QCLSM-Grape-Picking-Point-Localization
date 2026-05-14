@@ -11,8 +11,6 @@ Qiantong Wang et al., "QC-CVPP: Quality-Controlled Collaborative Visual Percepti
 
 The repository is intended to improve the transparency and reproducibility of the proposed visual perception pipeline for grape picking-point localization. The current public version covers the complete experimental workflow of the proposed pipeline, including Grounding DINO-based ROI generation, SegFormer-SFG segmentation, and SJAR-Loc picking-point localization, with corresponding scripts, interfaces, and descriptions.
 
-After acceptance, the final archived release will be preserved on Zenodo with a permanent DOI.
-
  1. Overview
 
 The proposed pipeline consists of three main stages:
