@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "QCLSM-Grape-Picking-Point-Localization"
+title: "QC-CVPP:Quality-Controlled Collaborative Visual Perception Pipeline for Robotic Fruit Harvesting and Precise Localization"
 message: "If you use this code, please cite the associated manuscript submitted to The Visual Computer."
 type: software
 repository-code: "https://github.com/wangluoxuan/QCLSM-Grape-Picking-Point-Localization"
