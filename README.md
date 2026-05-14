@@ -55,12 +55,12 @@ QCLSM-Grape-Picking-Point-Localization/
 
 
 The main folders are described below:
+- `experiments/DINO/`: wrapper script for Grounding DINO-based ROI generation.
+- `experiments/SegFormer_SFG/`: SegFormer-SFG segmentation training, testing, and inference interface.
+- `experiments/SJAR_LOC/`: SJAR-Loc picking-point localization interface.
+- `examples/`: representative input images, example masks, and visualization outputs.
 
-experiments/DINO/: wrapper script for Grounding DINO-based ROI generation.
-experiments/SegFormer_SFG: SegFormer-SFG segmentation training, testing, and inference interface.
-experiments/SJAR_LOC/: SJAR-Loc picking-point localization interface.
-examples/: representative input images, example masks, and visualization outputs.
-
+---
 3. Installation
 
 Clone this repository:
@@ -71,9 +71,13 @@ conda activate qclsm
 
 
 Install dependencies:
+```bash
 pip install -r requirements.txt
+```
 
 Recommended environment:
+
+```text
 Python >= 3.8
 PyTorch >= 1.10
 transformers
@@ -82,6 +86,7 @@ numpy
 Pillow
 scikit-learn
 tqdm
+```
 
 4. Data Preparation
 
@@ -104,10 +109,10 @@ data/
 ```
 
 Each image should have a corresponding mask file with the same file name. For example:
-
-
+```text
 data/mask_aug/train/images/sample_001.jpg
 data/mask_aug/train/masks/sample_001.png
+```
 The mask should be a single-channel label image. The label definitions are:
 
 | Label ID | Class |
